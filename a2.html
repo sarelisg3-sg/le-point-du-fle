@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Résultats – passé composé | Le Point du FLE</title>
+<title>Niveau A2 – Élémentaire | Le Point du FLE</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -40,9 +40,7 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ══════════════════════════════════════
-   NAVBAR — identique à resource-preview
-   ══════════════════════════════════════ */
+/* ── NAVBAR ── */
 .navbar {
   width: 100%;
   background: var(--color-white);
@@ -77,11 +75,7 @@ body {
 }
 .nav-links a:hover { color: var(--color-blue-57); }
 
-/* ══════════════════════════════════════
-   MAIN
-   padding 80px H · inner max 1280px
-   96px top/bottom
-   ══════════════════════════════════════ */
+/* ── MAIN ── */
 main {
   background: #FAFBFF;
   padding: 0 80px;
@@ -96,34 +90,102 @@ main {
   align-items: flex-start;
 }
 
-/* ══════════════════════════════════════
-   RESULTS HEADER
-   Título: Montserrat 32/600/#3B55E6
-   Filtros en fila con gap 16px
-   ══════════════════════════════════════ */
-.results-header {
+/* ── NIVEAU HEADER ── */
+.niveau-header {
   width: 100%;
   padding-bottom: 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
-.results-title {
+.niveau-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-azure-47);
+  text-decoration: none;
+  width: fit-content;
+  margin-bottom: 4px;
+}
+.niveau-breadcrumb:hover { color: var(--color-blue-57); }
+.niveau-breadcrumb .material-symbols-outlined {
+  font-size: 16px;
+  font-variation-settings: 'FILL' 0, 'wght' 400;
+}
+
+.niveau-title-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.niveau-title {
   font-family: 'Montserrat', sans-serif;
   font-size: 32px;
   font-weight: 600;
   line-height: 41.6px;
   color: var(--color-blue-57);
-  word-wrap: break-word;
+}
+.niveau-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25.6px;
+  color: var(--color-azure-47);
 }
 
-/* ── FILTER CHIPS ── */
+/* ── SEARCH BAR ── */
+.search-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+}
+.search-icon-inner {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-azure-47);
+  pointer-events: none;
+  font-family: 'Material Symbols Outlined';
+  font-size: 20px;
+  font-variation-settings: 'FILL' 0, 'wght' 400;
+  line-height: 1;
+}
+.search-input {
+  width: 100%;
+  padding: 14px 24px 14px 52px;
+  border-radius: 16px;
+  border: none;
+  outline: 1px solid var(--color-grey-91);
+  outline-offset: -1px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--color-azure-27);
+  background: var(--color-white);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+.search-input::placeholder { color: var(--color-azure-47); }
+.search-input:focus {
+  outline: 2px solid var(--color-blue-57);
+  outline-offset: -2px;
+}
+
+/* ── FILTER CHIPS + DROPDOWNS ── */
 .filters-row {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   align-items: center;
+}
+
+.filter-chip-wrapper {
+  position: relative;
+  display: inline-flex;
 }
 
 .filter-chip {
@@ -140,8 +202,22 @@ main {
   cursor: pointer;
   white-space: nowrap;
   min-width: 160px;
+  user-select: none;
+  transition: background 0.15s, outline-color 0.15s;
 }
 .filter-chip--wide { min-width: 180px; }
+
+.filter-chip:hover:not(.filter-chip--active) {
+  background: var(--color-blue-light);
+  outline-color: var(--color-blue-57);
+}
+
+.filter-chip--active {
+  background: var(--color-blue-57);
+  outline-color: var(--color-blue-57);
+}
+.filter-chip--active .filter-chip-label { color: #ffffff; }
+.filter-chip--active .filter-chip-chevron { color: #ffffff; }
 
 .filter-chip-label {
   font-family: 'Inter', sans-serif;
@@ -149,6 +225,7 @@ main {
   font-weight: 400;
   line-height: 21px;
   color: var(--color-azure-12);
+  flex: 1;
 }
 .filter-chip-chevron {
   font-family: 'Material Symbols Outlined';
@@ -159,56 +236,37 @@ main {
   flex-shrink: 0;
   transition: transform 0.2s ease;
 }
+.filter-chip-wrapper.open .filter-chip-chevron { transform: rotate(180deg); }
 
-/* ── FILTER CHIP WRAPPER + DROPDOWN ── */
-.filter-chip-wrapper {
-  position: relative;
-  display: inline-flex;
-}
-.filter-chip--active {
-  background: var(--color-blue-57);
-  outline-color: var(--color-blue-57);
-}
-.filter-chip--active .filter-chip-label {
-  color: #ffffff;
-}
-.filter-chip--active .filter-chip-chevron {
-  color: #ffffff;
-}
-.filter-chip-wrapper.open .filter-chip-chevron {
-  transform: rotate(180deg);
-}
 .filter-dropdown {
   position: absolute;
   top: calc(100% + 6px);
   left: 0;
-  min-width: 200px;
+  min-width: 210px;
   background: var(--color-white);
   border-radius: 12px;
   outline: 1px solid var(--color-grey-91);
   outline-offset: -1px;
   box-shadow: 0px 8px 24px rgba(51, 65, 85, 0.12);
-  display: none;
   z-index: 200;
-  padding: 8px 0;
+  overflow: hidden;
+  display: none;
+  padding: 4px 0;
 }
-.filter-dropdown.open {
-  display: block;
-}
+.filter-dropdown.open { display: block; }
+
 .filter-option {
-  display: flex;
-  align-items: center;
   padding: 10px 16px;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: var(--color-azure-27);
   cursor: pointer;
-  transition: background 0.12s;
+  transition: background 0.1s;
+  display: flex;
+  align-items: center;
 }
-.filter-option:hover {
-  background: var(--color-grey-99);
-}
+.filter-option:hover { background: var(--color-grey-99); }
 .filter-option.selected {
   background: var(--color-blue-light);
   color: var(--color-blue-57);
@@ -217,16 +275,12 @@ main {
 .filter-option.selected::after {
   content: 'check';
   font-family: 'Material Symbols Outlined';
-  font-variation-settings: 'FILL' 0, 'wght' 400;
   font-size: 16px;
   margin-left: auto;
-  line-height: 1;
+  font-variation-settings: 'FILL' 1, 'wght' 600;
 }
 
-/* ══════════════════════════════════════
-   RESULT CARDS
-   gap: 16px · padding 24px · card style
-   ══════════════════════════════════════ */
+/* ── RESULT CARDS ── */
 .results-list {
   width: 100%;
   display: flex;
@@ -255,7 +309,6 @@ main {
   transform: translateY(-1px);
 }
 
-/* icon area: 192×128px per Figma */
 .result-card-icon {
   width: 192px;
   height: 128px;
@@ -276,22 +329,19 @@ main {
   align-self: stretch;
 }
 
-/* title: Montserrat 20/600/25px/#334155 */
 .result-card-title {
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
   font-weight: 600;
   line-height: 25px;
   color: var(--color-azure-27);
-  word-wrap: break-word;
-  padding-bottom: 0;
 }
 
-/* tags: Inter 14/14px · blue-70 · level bold */
 .result-card-tags {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 .tag {
   font-family: 'Inter', sans-serif;
@@ -302,19 +352,15 @@ main {
 }
 .tag-level { font-weight: 600; }
 
-/* desc: Inter 14/400/21px/#444654 */
 .result-card-desc {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
   color: var(--color-blue-30);
-  word-wrap: break-word;
 }
 
-/* ══════════════════════════════════════
-   RESULTS FOOTER — compteur + pagination
-   ══════════════════════════════════════ */
+/* ── RESULTS FOOTER ── */
 .results-footer {
   width: 100%;
   padding-top: 40px;
@@ -323,34 +369,25 @@ main {
   gap: 24px;
   align-items: center;
 }
-
 .results-meta {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .results-count-text {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: var(--color-azure-27);
 }
-
 .results-per-page-text {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: var(--color-azure-47);
 }
-
-.pagination {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
+.pagination { display: flex; align-items: center; gap: 6px; }
 .page-btn {
   min-width: 40px;
   height: 40px;
@@ -371,13 +408,11 @@ main {
   box-shadow: 0px 1px 2px rgba(51, 65, 85, 0.04);
   transition: background 0.15s, color 0.15s, outline-color 0.15s;
 }
-
 .page-btn:hover:not(.page-btn--active):not([disabled]) {
   background: var(--color-blue-light);
   outline-color: var(--color-blue-57);
   color: var(--color-blue-57);
 }
-
 .page-btn--active {
   background: var(--color-blue-57);
   color: #ffffff;
@@ -385,7 +420,6 @@ main {
   font-weight: 600;
   cursor: default;
 }
-
 .page-btn--nav {
   font-family: 'Material Symbols Outlined';
   font-size: 20px;
@@ -393,24 +427,15 @@ main {
   line-height: 1;
   color: var(--color-azure-47);
 }
-
-.page-btn--nav[disabled] {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
+.page-btn--nav[disabled] { opacity: 0.35; cursor: not-allowed; }
 .page-ellipsis {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   color: var(--color-azure-47);
   padding: 0 4px;
-  user-select: none;
 }
 
-/* ══════════════════════════════════════
-   FOOTER — identique à resource-preview
-   padding: 64px top · 112px bottom · 160px H
-   ══════════════════════════════════════ */
+/* ── FOOTER ── */
 footer {
   background: var(--color-white);
   border-top: 1px solid var(--color-grey-91);
@@ -430,11 +455,7 @@ footer {
   line-height: 22.75px;
   color: var(--color-azure-47);
 }
-.footer-columns {
-  display: flex;
-  gap: 80px;
-  flex-wrap: wrap;
-}
+.footer-columns { display: flex; gap: 80px; flex-wrap: wrap; }
 .footer-col { display: flex; flex-direction: column; gap: 16px; padding-bottom: 72px; }
 .footer-col:last-child { padding-bottom: 36px; }
 .footer-col-title {
@@ -487,27 +508,28 @@ footer {
 <main>
   <div class="content-inner">
 
-    <!-- RESULTS HEADER -->
-    <div class="results-header">
-      <h1 class="results-title">Résultats pour "passé composé A2"</h1>
+    <!-- NIVEAU HEADER -->
+    <div class="niveau-header">
+
+      <a class="niveau-breadcrumb" href="home.html">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Accueil
+      </a>
+
+      <div class="niveau-title-row">
+        <h1 class="niveau-title">A2 — Élémentaire</h1>
+        <p class="niveau-subtitle">348 ressources disponibles pour ce niveau</p>
+      </div>
+
+      <!-- SEARCH BAR -->
+      <div class="search-wrap">
+        <span class="search-icon-inner">search</span>
+        <input class="search-input" id="search-input" type="text" placeholder="Rechercher dans le niveau A2..." autocomplete="off">
+      </div>
+
+      <!-- FILTER CHIPS -->
       <div class="filters-row">
 
-        <!-- Niveau -->
-        <div class="filter-chip-wrapper">
-          <div class="filter-chip" data-default-label="Niveau">
-            <span class="filter-chip-label">Niveau</span>
-            <span class="material-symbols-outlined filter-chip-chevron">expand_more</span>
-          </div>
-          <div class="filter-dropdown">
-            <div class="filter-option">A1</div>
-            <div class="filter-option">A2</div>
-            <div class="filter-option">B1</div>
-            <div class="filter-option">B2</div>
-            <div class="filter-option">C1</div>
-          </div>
-        </div>
-
-        <!-- Type de ressource -->
         <div class="filter-chip-wrapper">
           <div class="filter-chip filter-chip--wide" data-default-label="Type de ressource">
             <span class="filter-chip-label">Type de ressource</span>
@@ -522,7 +544,6 @@ footer {
           </div>
         </div>
 
-        <!-- Compétence -->
         <div class="filter-chip-wrapper">
           <div class="filter-chip" data-default-label="Compétence">
             <span class="filter-chip-label">Compétence</span>
@@ -537,7 +558,6 @@ footer {
           </div>
         </div>
 
-        <!-- Public cible -->
         <div class="filter-chip-wrapper">
           <div class="filter-chip" data-default-label="Public cible">
             <span class="filter-chip-label">Public cible</span>
@@ -552,7 +572,6 @@ footer {
           </div>
         </div>
 
-        <!-- Thème -->
         <div class="filter-chip-wrapper">
           <div class="filter-chip" data-default-label="Thème">
             <span class="filter-chip-label">Thème</span>
@@ -573,13 +592,49 @@ footer {
     <!-- RESULT CARDS -->
     <div class="results-list">
 
-      <!-- Card 1: PDF — liens vers resource-preview.html -->
-      <a class="result-card" href="resource-preview.html">
+      <!-- Card 1: Vidéo -->
+      <div class="result-card">
         <div class="result-card-icon">
-          <span class="material-symbols-outlined" style="font-size: 72px; color: var(--color-red-42); font-variation-settings: 'FILL' 1, 'wght' 400;">picture_as_pdf</span>
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-70);font-variation-settings:'FILL' 1,'wght' 400;">play_circle</span>
         </div>
         <div class="result-card-body">
-          <div class="result-card-title">Exercices sur le passé composé</div>
+          <div class="result-card-title">L'imparfait au quotidien</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Document authentique</span>
+            <span class="tag">•</span>
+            <span class="tag">Vidéo</span>
+          </div>
+          <div class="result-card-desc">Exemples de l'utilisation de l'imparfait dans une émission radio.</div>
+        </div>
+      </div>
+
+      <!-- Card 2: Compréhension Orale -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-30);font-variation-settings:'FILL' 1,'wght' 400;">headphones</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Acheter des produits et des services</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Dialogues</span>
+            <span class="tag">•</span>
+            <span class="tag">Document sonore</span>
+          </div>
+          <div class="result-card-desc">Conversations entre commerçants et clients au marché et dans les magasins.</div>
+        </div>
+      </div>
+
+      <!-- Card 3: PDF -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-red-42);font-variation-settings:'FILL' 1,'wght' 400;">picture_as_pdf</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Verbes irréguliers au futur simple (conjugaison)</div>
           <div class="result-card-tags">
             <span class="tag tag-level">A2</span>
             <span class="tag">•</span>
@@ -587,52 +642,232 @@ footer {
             <span class="tag">•</span>
             <span class="tag">PDF</span>
           </div>
-          <div class="result-card-desc">Activités pour pratiquer le passé composé avec des exemples concrets.</div>
-        </div>
-      </a>
-
-      <!-- Card 2: Vidéo -->
-      <div class="result-card">
-        <div class="result-card-icon">
-          <span class="material-symbols-outlined" style="font-size: 72px; color: var(--color-blue-70); font-variation-settings: 'FILL' 1, 'wght' 400;">play_circle</span>
-        </div>
-        <div class="result-card-body">
-          <div class="result-card-title">Comprendre le passé composé</div>
-          <div class="result-card-tags">
-            <span class="tag tag-level">A2</span>
-            <span class="tag">•</span>
-            <span class="tag">Explication</span>
-            <span class="tag">•</span>
-            <span class="tag">Vidéo</span>
-          </div>
-          <div class="result-card-desc">Explication des règles de grammaire les plus importantes du temps verbal.</div>
+          <div class="result-card-desc">Fiche grammaire et activités pour pratiquer les verbes irréguliers avec des exemples concrets.</div>
         </div>
       </div>
 
-      <!-- Card 3: Compréhension Orale -->
+      <!-- Card 4: Une journée de travail — menu_book / PDF -->
       <div class="result-card">
         <div class="result-card-icon">
-          <span class="material-symbols-outlined" style="font-size: 72px; color: var(--color-blue-30); font-variation-settings: 'FILL' 1, 'wght' 400;">headphones</span>
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-57);font-variation-settings:'FILL' 1,'wght' 400;">menu_book</span>
         </div>
         <div class="result-card-body">
-          <div class="result-card-title">Dialogues au passé composé</div>
+          <div class="result-card-title">Une journée de travail</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Compréhension écrite</span>
+            <span class="tag">•</span>
+            <span class="tag">PDF</span>
+          </div>
+          <div class="result-card-desc">Lecture sur la routine quotidienne d'une employée de bureau.</div>
+        </div>
+      </div>
+
+      <!-- Card 5: À la recherche d'un appartement — headphones / Document sonore -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-30);font-variation-settings:'FILL' 1,'wght' 400;">headphones</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">À la recherche d'un appartement</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Dialogue</span>
+            <span class="tag">•</span>
+            <span class="tag">Document sonore</span>
+          </div>
+          <div class="result-card-desc">Échange entre un locataire et un agent immobilier lors d'une visite.</div>
+        </div>
+      </div>
+
+      <!-- Card 6: Les verbes irréguliers au présent — picture_as_pdf / PDF -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-red-42);font-variation-settings:'FILL' 1,'wght' 400;">picture_as_pdf</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Les verbes irréguliers au présent</div>
           <div class="result-card-tags">
             <span class="tag tag-level">A2</span>
             <span class="tag">•</span>
             <span class="tag">Exercice</span>
             <span class="tag">•</span>
+            <span class="tag">PDF</span>
+          </div>
+          <div class="result-card-desc">Série d'exercices pour pratiquer les verbes irréguliers les plus fréquents.</div>
+        </div>
+      </div>
+
+      <!-- Card 7: Je veux – Zaz — music_note / Audio + Paroles -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-57);font-variation-settings:'FILL' 1,'wght' 400;">music_note</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Je veux – Zaz</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Chanson</span>
+            <span class="tag">•</span>
+            <span class="tag">Audio + Paroles</span>
+          </div>
+          <div class="result-card-desc">Exploitation pédagogique d'une chanson pour travailler le vocabulaire et les opinions.</div>
+        </div>
+      </div>
+
+      <!-- Card 8: Chez le médecin — play_circle / Vidéo -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-70);font-variation-settings:'FILL' 1,'wght' 400;">play_circle</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Chez le médecin</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Jeu de rôle</span>
+            <span class="tag">•</span>
+            <span class="tag">Vidéo</span>
+          </div>
+          <div class="result-card-desc">Situations de communication pour décrire des symptômes et demander de l'aide.</div>
+        </div>
+      </div>
+
+      <!-- Card 9: Les vacances en France — play_circle / Vidéo -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-70);font-variation-settings:'FILL' 1,'wght' 400;">play_circle</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Les vacances en France</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Compréhension orale</span>
+            <span class="tag">•</span>
+            <span class="tag">Vidéo</span>
+          </div>
+          <div class="result-card-desc">Témoignages de voyageurs racontant leurs expériences de vacances.</div>
+        </div>
+      </div>
+
+      <!-- Card 10: Raconter un souvenir d'enfance — record_voice_over / Document -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-57);font-variation-settings:'FILL' 1,'wght' 400;">record_voice_over</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Raconter un souvenir d'enfance</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Production orale</span>
+            <span class="tag">•</span>
+            <span class="tag">Document</span>
+          </div>
+          <div class="result-card-desc">Activités guidées pour raconter des souvenirs au passé composé et à l'imparfait.</div>
+        </div>
+      </div>
+
+      <!-- Card 11: Commander au restaurant — headphones / Document sonore -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-30);font-variation-settings:'FILL' 1,'wght' 400;">headphones</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Commander au restaurant</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Dialogue authentique</span>
+            <span class="tag">•</span>
             <span class="tag">Document sonore</span>
           </div>
-          <div class="result-card-desc">Dialogues à la cantine de l'université avec des expressions linguistiques.</div>
+          <div class="result-card-desc">Interaction entre un serveur et des clients dans un restaurant français.</div>
+        </div>
+      </div>
+
+      <!-- Card 12: Les pronoms relatifs simples — spellcheck / PDF -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-57);font-variation-settings:'FILL' 1,'wght' 400;">spellcheck</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Les pronoms relatifs simples</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Exercice de grammaire</span>
+            <span class="tag">•</span>
+            <span class="tag">PDF</span>
+          </div>
+          <div class="result-card-desc">Activités pour utiliser correctement « qui », « que » et « où ».</div>
+        </div>
+      </div>
+
+      <!-- Card 13: Découvrir Montréal — auto_stories / PDF -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-57);font-variation-settings:'FILL' 1,'wght' 400;">auto_stories</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Découvrir Montréal</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Lecture culturelle</span>
+            <span class="tag">•</span>
+            <span class="tag">PDF</span>
+          </div>
+          <div class="result-card-desc">Texte informatif sur la culture et les lieux emblématiques de Montréal.</div>
+        </div>
+      </div>
+
+      <!-- Card 14: Les transports en commun — headphones / Document sonore -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-blue-30);font-variation-settings:'FILL' 1,'wght' 400;">headphones</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Les transports en commun</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Compréhension orale</span>
+            <span class="tag">•</span>
+            <span class="tag">Document sonore</span>
+          </div>
+          <div class="result-card-desc">Écoute d'annonces et de conversations dans le métro et les autobus.</div>
+        </div>
+      </div>
+
+      <!-- Card 15: Organiser une fête d'anniversaire — edit_note / Document -->
+      <div class="result-card">
+        <div class="result-card-icon">
+          <span class="material-symbols-outlined" style="font-size:72px;color:var(--color-azure-47);font-variation-settings:'FILL' 1,'wght' 400;">edit_note</span>
+        </div>
+        <div class="result-card-body">
+          <div class="result-card-title">Organiser une fête d'anniversaire</div>
+          <div class="result-card-tags">
+            <span class="tag tag-level">A2</span>
+            <span class="tag">•</span>
+            <span class="tag">Projet communicatif</span>
+            <span class="tag">•</span>
+            <span class="tag">Document</span>
+          </div>
+          <div class="result-card-desc">Tâche collaborative pour planifier un événement et répartir les responsabilités.</div>
         </div>
       </div>
 
     </div>
 
-    <!-- RÉSULTATS COUNT + PAGINATION -->
+    <!-- RÉSULTATS + PAGINATION -->
     <div class="results-footer">
       <div class="results-meta">
-        <span class="results-count-text">1 000 résultats trouvés</span>
+        <span class="results-count-text">348 ressources trouvées</span>
         <span class="results-per-page-text">15 résultats par page</span>
       </div>
       <nav class="pagination" aria-label="Pagination">
@@ -641,7 +876,7 @@ footer {
         <button class="page-btn">2</button>
         <button class="page-btn">3</button>
         <span class="page-ellipsis">…</span>
-        <button class="page-btn">67</button>
+        <button class="page-btn">24</button>
         <button class="page-btn page-btn--nav" aria-label="Page suivante">chevron_right</button>
       </nav>
     </div>
@@ -652,7 +887,7 @@ footer {
 <!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-logo-block">
-    <svg fill="none" viewBox="0 0 448 176" xmlns="http://www.w3.org/2000/svg" style="width: 163px; height: 64px; display: block;">
+    <svg fill="none" viewBox="0 0 448 176" xmlns="http://www.w3.org/2000/svg" style="width:163px;height:64px;display:block;">
       <path d="M126 116.234C129.366 116.234 131.958 117.614 133.853 119.739C135.689 121.8 136.828 124.504 137.556 127.191C139.01 132.56 139 138.566 139 141.234C139 144.091 138.48 149.344 136.747 153.958C135.06 158.45 131.838 163.234 126 163.234C120.858 163.234 117.573 159.607 115.677 155.396C113.774 151.169 113 145.865 113 141.234C113 136.763 113.242 130.738 114.847 125.778C115.652 123.288 116.849 120.913 118.667 119.143C120.536 117.323 122.972 116.234 126 116.234ZM246 162.184H242V157.377C240.172 160.44 237.344 163.234 233 163.234C227.962 163.234 225.242 158.998 223.842 154.834C222.393 150.525 221.959 145.275 222 141.214C222.039 137.335 222.032 131.339 223.208 126.316C223.797 123.802 224.723 121.329 226.26 119.451C227.861 117.494 230.093 116.234 233 116.234C237.142 116.234 240.031 117.653 242 119.739V97.75H246V162.184ZM258 150.239C257.996 152.136 258.284 154.515 259.223 156.346C259.679 157.236 260.261 157.939 260.986 158.423C261.698 158.897 262.656 159.234 264 159.234C266.485 159.234 268.344 157.791 269.771 155.691C271.115 153.712 271.884 151.393 272.22 150.019V117.234H276.22V162.184H272.22V159.084C270.38 161.32 267.703 163.234 264 163.234C261.94 163.234 260.194 162.704 258.766 161.751C257.352 160.808 256.356 159.523 255.663 158.171C254.302 155.518 253.995 152.397 254 150.229V117.234H258V150.239ZM48.2197 117.181C50.76 117.181 52.9216 117.691 54.6797 118.829C56.4524 119.976 57.6205 121.636 58.3877 123.573C59.8599 127.292 59.999 132.464 59.999 138.233V140.233H40.0029C40.0244 145.104 40.1864 149.689 41.3916 153.205C42.0569 155.146 42.9953 156.61 44.2812 157.599C45.5511 158.575 47.3467 159.233 50 159.233C52.2848 159.234 53.4041 158.48 54.0137 157.696C54.6934 156.822 54.999 155.571 54.999 154.234H58.999C58.999 156.07 58.5956 158.319 57.1709 160.151C55.6759 162.074 53.2952 163.234 49.999 163.233C46.653 163.233 43.9478 162.388 41.8428 160.77C39.754 159.163 38.4421 156.937 37.6074 154.502C35.9764 149.744 35.999 143.619 35.999 138.233C35.999 134.9 35.7813 129.75 37.0703 125.502C37.7307 123.326 38.8302 121.21 40.6943 119.643C42.5876 118.05 45.0825 117.181 48.2197 117.181ZM168.621 117.27C171.48 116.718 174.979 116.797 177.752 119.206C180.498 121.592 182 125.808 182 132.234C182 144.255 181.949 157.226 182 162.213L178 162.254C177.949 157.241 178 144.214 178 132.234C178 126.278 176.589 123.494 175.129 122.226C173.695 120.98 171.694 120.75 169.379 121.197C167.737 121.514 166.314 122.954 165.187 125.338C164.105 127.626 163.517 130.345 163.3 132.354V162.184H159.3V117.234H163.3V120.767C164.594 119.092 166.325 117.713 168.621 117.27ZM12 158.234H31V162.234H8V101.234H12V158.234ZM196 117.234H201V121.234H196V155.234C196 156.152 196.216 156.675 196.433 156.988C196.654 157.309 196.985 157.566 197.461 157.768C198.506 158.21 199.848 158.234 201 158.234V162.234C199.97 162.234 197.811 162.259 195.902 161.451C194.902 161.028 193.892 160.347 193.142 159.262C192.434 158.237 192.05 156.985 192.005 155.528L192 155.234V121.234H187V117.234H192V105.234H196V117.234ZM304 101.259H324V105.259H304V129.234H321V133.234H304V162.234H300V101.234H304V101.259ZM335 158.234H353.498V162.234H331V101.234H335V158.234ZM384.959 101.234V105.234H365V129.234H382V133.234H365V158.234H385V162.234H361V101.234H384.959ZM82.875 101.237C90.8885 100.735 97.2306 101.299 101.576 104.122C106.144 107.089 108 112.168 108 119.233C108 124.005 107.006 127.666 105.206 130.421C103.395 133.194 100.884 134.868 98.1914 135.86C95.5311 136.84 92.6658 137.166 90.043 137.263C88.3074 137.327 86.5353 137.29 85 137.26V162.233H81V101.354L82.875 101.237ZM150 162.233H146V117.283H150V162.233ZM126 120.234C124.028 120.234 122.589 120.907 121.458 122.009C120.276 123.159 119.347 124.864 118.653 127.01C117.258 131.323 117 136.798 117 141.234C117 145.512 117.727 150.208 119.323 153.754C120.927 157.315 123.142 159.234 126 159.234C129.162 159.234 131.44 156.712 133.003 152.552C134.52 148.513 135 143.765 135 141.234C135 138.516 134.99 133.02 133.694 128.236C133.047 125.847 132.123 123.811 130.866 122.401C129.667 121.056 128.134 120.234 126 120.234ZM233 120.234C231.408 120.234 230.274 120.862 229.356 121.983C228.374 123.184 227.629 124.98 227.103 127.229C226.049 131.731 226.041 137.236 226 141.255C225.961 145.092 226.384 149.843 227.634 153.559C228.932 157.42 230.752 159.234 233 159.234C235.524 159.234 237.42 157.539 238.971 154.613C240.465 151.795 241.331 148.386 242 145.817V130.122C241.678 128.011 241.211 125.547 239.953 123.591C238.774 121.757 236.815 120.234 233 120.234ZM48.2197 121.181C45.8575 121.181 44.3237 121.818 43.2695 122.704C42.1866 123.615 41.418 124.951 40.8984 126.663C40.0167 129.569 39.9785 133.049 39.9922 136.233H55.9902C55.942 131.289 55.6751 127.589 54.668 125.045C54.1297 123.686 53.4222 122.78 52.5068 122.188C51.5768 121.586 50.2368 121.181 48.2197 121.181ZM99.3975 107.477C96.49 105.588 91.8973 104.855 85 105.135V133.258C86.5451 133.289 88.1553 133.33 89.8945 133.266C92.3341 133.175 94.719 132.876 96.8086 132.106C98.8654 131.349 100.605 130.148 101.856 128.233C103.119 126.301 104 123.462 104 119.233C104 112.809 102.339 109.387 99.3975 107.477Z" fill="#6684FE"/>
       <path d="M423 146.294C426.02 146.294 427.975 147.635 429.113 149.395C430.188 151.057 430.467 152.977 430.5 154.193L430.542 155.734H417.592C417.791 157.308 418.308 158.435 418.993 159.197C419.859 160.16 421.166 160.734 423 160.734C424.804 160.734 425.759 160.158 426.269 159.633C426.823 159.06 426.974 158.422 426.98 158.19L428.479 158.234L429.979 158.278C429.952 159.228 429.52 160.589 428.423 161.721C427.28 162.9 425.512 163.734 423 163.734C420.507 163.734 418.314 162.929 416.762 161.203C415.23 159.499 414.5 157.095 414.5 154.234C414.5 151.104 415.875 149.029 417.72 147.8C419.477 146.63 421.547 146.294 423 146.294ZM406.092 146.297C408.438 146.441 410.041 147.392 411.004 148.695C411.898 149.906 412.141 151.286 412.087 152.267V163.234H409.087V152.181L409.091 152.126C409.119 151.731 409.014 151.051 408.591 150.478C408.213 149.966 407.47 149.387 405.908 149.291C404.416 149.2 403.413 149.73 402.722 150.405C402.049 151.063 401.66 151.878 401.5 152.436V163.234H398.5V146.82H401.5V147.533C402.668 146.713 404.193 146.181 406.092 146.297ZM436.5 146.294H439.41V149.294H436.5V157.812C436.5 159.103 436.953 159.561 437.339 159.796C437.861 160.113 438.615 160.219 439.41 160.219V163.219C438.483 163.219 437.033 163.121 435.78 162.359C434.392 161.515 433.5 160.018 433.5 157.812V149.294H432V146.294H433.5V141.234H436.5V146.294ZM394.452 162.734H390.487V159.734H394.452V162.734ZM423 149.294C421.922 149.294 420.493 149.558 419.383 150.297C418.635 150.795 417.976 151.542 417.675 152.734H427.296C427.155 152.149 426.933 151.549 426.594 151.023C425.997 150.1 424.98 149.294 423 149.294Z" fill="#CDD4DD"/>
       <ellipse cx="152.771" cy="59.8985" fill="#FFDE92" rx="48.2292" ry="47.8985"/>
@@ -689,15 +924,19 @@ footer {
 
 <script>
 /* ── Filter dropdowns ── */
-document.querySelectorAll('.filter-chip-wrapper .filter-chip').forEach(chip => {
+document.querySelectorAll('.filter-chip').forEach(chip => {
   chip.addEventListener('click', function(e) {
     e.stopPropagation();
     const wrapper = this.closest('.filter-chip-wrapper');
     const dropdown = wrapper.querySelector('.filter-dropdown');
     const isOpen = wrapper.classList.contains('open');
+    // Close all
     document.querySelectorAll('.filter-chip-wrapper').forEach(w => w.classList.remove('open'));
     document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('open'));
-    if (!isOpen) { wrapper.classList.add('open'); dropdown.classList.add('open'); }
+    if (!isOpen) {
+      wrapper.classList.add('open');
+      dropdown.classList.add('open');
+    }
   });
 });
 
@@ -716,7 +955,7 @@ document.querySelectorAll('.filter-option').forEach(option => {
     } else {
       dropdown.querySelectorAll('.filter-option').forEach(o => o.classList.remove('selected'));
       this.classList.add('selected');
-      label.textContent = this.textContent.trim();
+      label.textContent = this.textContent;
       chip.classList.add('filter-chip--active');
     }
     wrapper.classList.remove('open');
@@ -729,7 +968,16 @@ document.addEventListener('click', () => {
   document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('open'));
 });
 
-/* ── Page transition: fade-out avant navigation ── */
+/* ── Search ── */
+document.getElementById('search-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim() !== '') {
+    document.body.style.transition = 'opacity 0.2s ease';
+    document.body.style.opacity = '0';
+    setTimeout(() => { window.location.href = 'search-results.html'; }, 200);
+  }
+});
+
+/* ── Page transitions ── */
 document.querySelectorAll('a[href]:not([href^="#"])').forEach(link => {
   link.addEventListener('click', e => {
     const href = link.getAttribute('href');
