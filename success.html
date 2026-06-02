@@ -311,6 +311,76 @@ main {
 }
 
 /* ══════════════════════════════════════
+   PDF MODAL
+   ══════════════════════════════════════ */
+.pdf-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.pdf-modal.open { display: flex; }
+
+.pdf-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 28, 47, 0.55);
+  backdrop-filter: blur(4px);
+}
+.pdf-modal-box {
+  position: relative;
+  z-index: 1001;
+  width: 90%;
+  max-width: 920px;
+  height: 88vh;
+  background: var(--color-white);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0px 24px 64px rgba(13, 28, 47, 0.28);
+  animation: modalIn 0.2s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.97) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.pdf-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-grey-91);
+  flex-shrink: 0;
+}
+.pdf-modal-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-azure-27);
+}
+.pdf-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-azure-47);
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.pdf-modal-close:hover { background: var(--color-grey-99); color: var(--color-azure-27); }
+.pdf-modal-close .material-symbols-outlined { font-size: 22px; }
+.pdf-modal-iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
+/* ══════════════════════════════════════
    FOOTER
    ══════════════════════════════════════ */
 footer {
@@ -411,7 +481,7 @@ footer {
 
         <!-- Boutons -->
         <div class="success-buttons">
-          <button class="btn-primary">Ouvrir le fichier</button>
+          <button class="btn-primary" onclick="openPdfModal()">Ouvrir le fichier</button>
           <a class="btn-secondary" href="search-results.html">Retour aux exercices</a>
         </div>
       </div>
@@ -533,7 +603,38 @@ footer {
   </div>
 </footer>
 
+<!-- ══ PDF MODAL ══ -->
+<div class="pdf-modal" id="pdf-modal">
+  <div class="pdf-modal-backdrop" onclick="closePdfModal()"></div>
+  <div class="pdf-modal-box">
+    <div class="pdf-modal-header">
+      <span class="pdf-modal-title">Exercices sur le passé composé — A2</span>
+      <button class="pdf-modal-close" onclick="closePdfModal()" aria-label="Fermer">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <iframe
+      class="pdf-modal-iframe"
+      src="FICHE-LE-PASSE-COMPOSE-EXERCICES.pdf"
+      title="Exercices sur le passé composé">
+    </iframe>
+  </div>
+</div>
+
 <script>
+function openPdfModal() {
+  document.getElementById('pdf-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePdfModal() {
+  document.getElementById('pdf-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+/* Cerrar con tecla Escape */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePdfModal();
+});
+
 /* Page transition: fade-out avant navigation */
 document.querySelectorAll('a[href]:not([href^="#"])').forEach(link => {
   link.addEventListener('click', e => {
