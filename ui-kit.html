@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Kit — Le Point du FLE</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-grey-99:    #F8FAFF;
+  --color-white:      #ffffff;
+  --color-blue-57:    #3B55E6;
+  --color-blue-30:    #444654;
+  --color-azure-27:   #334155;
+  --color-azure-47:   #64748B;
+  --color-blue-70:    #6684FE;
+  --color-grey-91:    #E2E8F0;
+  --color-red-42:     #BA1A1A;
+  --color-orange-79:  #FFDE92;
+  --color-azure-12:   #0D1C2F;
+  --color-blue-light: #EFF4FF;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--color-grey-99);
+  font-family: 'Inter', sans-serif;
+  color: var(--color-azure-27);
+  line-height: 1.6;
+}
+
+.kit-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px;
+}
+
+.kit-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.kit-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-blue-57);
+  margin-bottom: 16px;
+}
+
+.kit-subtitle {
+  font-size: 18px;
+  color: var(--color-azure-47);
+}
+
+.kit-section {
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: 48px;
+  margin-bottom: 48px;
+  border: 1px solid var(--color-grey-91);
+}
+
+.kit-section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-azure-12);
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--color-blue-57);
+}
+
+/* ── COLORES ── */
+.colors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.color-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.color-swatch {
+  width: 100%;
+  height: 120px;
+  border-radius: 8px;
+  border: 1px solid var(--color-grey-91);
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.05);
+}
+
+.color-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-azure-27);
+}
+
+.color-value {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--color-azure-47);
+}
+
+/* ── TIPOGRAFÍAS ── */
+.typo-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.typo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.typo-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-blue-57);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.typo-montserrat-48 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-azure-27);
+}
+
+.typo-montserrat-32 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-azure-27);
+}
+
+.typo-montserrat-24 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-azure-27);
+}
+
+.typo-montserrat-20 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-azure-27);
+}
+
+.typo-inter-16 {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-azure-27);
+}
+
+.typo-inter-14 {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-azure-27);
+}
+
+/* ── COMPONENTES ── */
+.components-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.component-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.component-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-blue-57);
+}
+
+.component-preview {
+  background: var(--color-grey-99);
+  border: 1px dashed var(--color-grey-91);
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ── BOTONES ── */
+.btn-primary {
+  height: 48px;
+  padding: 0 32px;
+  background: var(--color-blue-57);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover { background: #2f44c4; }
+
+.btn-secondary {
+  height: 48px;
+  padding: 0 32px;
+  background: transparent;
+  border: none;
+  outline: 1px solid var(--color-blue-70);
+  outline-offset: -1px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-blue-70);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.btn-secondary:hover { background: rgba(102, 132, 254, 0.06); }
+
+/* ── TARJETAS ── */
+.card-example {
+  background: var(--color-white);
+  border-radius: 16px;
+  outline: 1px solid var(--color-grey-91);
+  outline-offset: -1px;
+  box-shadow: 0px 4px 20px rgba(51, 65, 85, 0.03);
+  padding: 24px;
+  max-width: 320px;
+}
+
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-azure-27);
+  margin-bottom: 8px;
+}
+
+.card-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: var(--color-blue-70);
+}
+
+.card-desc {
+  font-size: 14px;
+  color: var(--color-blue-30);
+  line-height: 1.5;
+}
+
+/* ── FILTROS ── */
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--color-white);
+  border-radius: 16px;
+  outline: 1px solid var(--color-grey-91);
+  outline-offset: -1px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-azure-12);
+  white-space: nowrap;
+}
+
+.filter-chip:hover {
+  background: var(--color-blue-light);
+  outline-color: var(--color-blue-57);
+}
+
+.filter-chip--active {
+  background: var(--color-blue-57);
+  outline-color: var(--color-blue-57);
+  color: var(--color-white);
+}
+
+/* ── ACORDEONES ── */
+.accordion-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-grey-91);
+  border-radius: 16px;
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  transition: background 0.15s;
+}
+
+.accordion-card:hover {
+  background: var(--color-grey-99);
+}
+
+.accordion-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-azure-27);
+}
+
+/* ── SPACING ── */
+.spacing-demo {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.spacing-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.spacing-box {
+  background: var(--color-blue-57);
+  border-radius: 4px;
+}
+
+.spacing-label {
+  font-size: 12px;
+  color: var(--color-azure-47);
+  text-align: center;
+}
+
+/* ── ICONS ── */
+.icons-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  background: var(--color-grey-99);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-grey-91);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400;
+  font-size: 32px;
+  color: var(--color-blue-57);
+}
+
+.icon-name {
+  font-size: 12px;
+  color: var(--color-azure-47);
+  font-family: 'Courier New', monospace;
+  word-break: break-word;
+}
+
+/* ── BREADCRUMB ── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-azure-47);
+  margin-bottom: 16px;
+}
+
+.breadcrumb a {
+  color: var(--color-blue-57);
+  text-decoration: none;
+}
+
+/* ── FOOTER ── */
+.kit-footer {
+  text-align: center;
+  padding: 40px;
+  border-top: 1px solid var(--color-grey-91);
+  margin-top: 80px;
+  color: var(--color-azure-47);
+  font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<div class="kit-container">
+
+  <!-- HEADER -->
+  <div class="kit-header">
+    <h1 class="kit-title">UI Kit</h1>
+    <p class="kit-subtitle">Le Point du FLE — Design System Completo</p>
+  </div>
+
+  <!-- DESIGN TOKENS: COLORES -->
+  <div class="kit-section">
+    <h2 class="kit-section-title">Design Tokens — Colores</h2>
+    <div class="colors-grid">
+      <div class="color-item">
+        <div class="color-swatch" style="background: #F8FAFF;"></div>
+        <div class="color-name">Grey 99</div>
+        <div class="color-value">#F8FAFF</div>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background: #ffffff; border: 2px solid #E2E8F0;"></div>
+        <div class="color-name">White</div>
+        <div class="color-value">#ffffff</div>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background: #3B55E6;"></div>
+        <div class="color-name">Blue 57</div>
+        <div class="color-value">#3B55E6</div>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background: #444654;"></div>
+        <div class="color-name">Blue 30</div>
+        <div class="color-value">#444654</div>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background: #334155;"></div>
+        <div class="color-name">Azure 27</div>
+        <div class="color-value">#334155</div>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background: #64748B;"></div>
+        <div class="color-name">Azure 47</div>
+        <div class="color-value">#64748B</div>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background: #6684FE;"></div>
+        <div class="color-name">Blue 70</div>
+        <div class="color-value">#6684FE</div>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background: #E2E8F0;"></div>
+        <div class="color-name">Grey 91</div>
+        <div class="color-value">#E2E8F0</div>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background: #BA1A1A;"></div>
+        <div class="color-name">Red 42</div>
+        <div class="color-value">#BA1A1A</div>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background: #FFDE92;"></div>
+        <div class="color-name">Orange 79</div>
+        <div class="color-value">#FFDE92</div>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background: #0D1C2F;"></div>
+        <div class="color-name">Azure 12</div>
+        <div class="color-value">#0D1C2F</div>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background: #EFF4FF;"></div>
+        <div class="color-name">Blue Light</div>
+        <div class="color-value">#EFF4FF</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPOGRAFÍAS -->
+  <div class="kit-section">
+    <h2 class="kit-section-title">Tipografías</h2>
+    <div class="typo-grid">
+      <div class="typo-item">
+        <span class="typo-label">Montserrat 48 / 600</span>
+        <div class="typo-montserrat-48">Hero title — Apprenez le français</div>
+      </div>
+      <div class="typo-item">
+        <span class="typo-label">Montserrat 32 / 600</span>
+        <div class="typo-montserrat-32">Page title — Exercices sur le passé composé</div>
+      </div>
+      <div class="typo-item">
+        <span class="typo-label">Montserrat 24 / 600</span>
+        <div class="typo-montserrat-24">Section title — Choisissez votre niveau</div>
+      </div>
+      <div class="typo-item">
+        <span class="typo-label">Montserrat 20 / 600</span>
+        <div class="typo-montserrat-20">Card title — Le passé composé avec avoir</div>
+      </div>
+      <div class="typo-item">
+        <span class="typo-label">Inter 16 / 400</span>
+        <div class="typo-inter-16">Body text — Lecture sur la routine quotidienne d'une employée de bureau.</div>
+      </div>
+      <div class="typo-item">
+        <span class="typo-label">Inter 14 / 400</span>
+        <div class="typo-inter-14">Small text — Fiche de conjugaison et activités pratiques.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPONENTES PRINCIPALES -->
+  <div class="kit-section">
+    <h2 class="kit-section-title">Botones</h2>
+    <div class="components-grid">
+      <div class="component-item">
+        <span class="component-label">Botón Primario</span>
+        <div class="component-preview">
+          <button class="btn-primary">Télécharger</button>
+        </div>
+      </div>
+      <div class="component-item">
+        <span class="component-label">Botón Secundario</span>
+        <div class="component-preview">
+          <a class="btn-secondary" href="#" onclick="return false;">Retour aux exercices</a>
+        </div>
+      </div>
+      <div class="component-item">
+        <span class="component-label">Botón Primario Hover</span>
+        <div class="component-preview" style="background: #EFF4FF;">
+          <button class="btn-primary" style="background: #2f44c4;">Ouvrir le fichier</button>
+        </div>
+      </div>
+      <div class="component-item">
+        <span class="component-label">Botón Secundario Hover</span>
+        <div class="component-preview" style="background: #EFF4FF;">
+          <a class="btn-secondary" style="background: rgba(102, 132, 254, 0.06);" href="#" onclick="return false;">Ver más</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETAS -->
+  <div class="kit-section">
+    <h2 class="kit-section-title">Tarjetas de Recursos</h2>
+    <div class="components-grid">
+      <div class="component-item">
+        <span class="component-label">Tarjeta Básica</span>
+        <div class="card-example">
+          <div class="card-title">Les verbes irréguliers</div>
+          <div class="card-tags">
+            <span>A2</span>
+            <span>•</span>
+            <span>Exercice</span>
+            <span>•</span>
+            <span>PDF</span>
+          </div>
+          <div class="card-desc">Série d'exercices pour pratiquer les verbes irréguliers les plus fréquents.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="kit-section">
+    <h2 class="kit-section-title">Filtros y Chips</h2>
+    <div class="component-item">
+      <span class="component-label">Filtros inactivos</span>
+      <div class="component-preview">
+        <div class="filter-chip">Type de ressource</div>
+        <div class="filter-chip">Compétence</div>
+        <div class="filter-chip">Thème</div>
+      </div>
+    </div>
+    <div class="component-item" style="margin-top: 24px;">
+      <span class="component-label">Filtros activos</span>
+      <div class="component-preview">
+        <div class="filter-chip filter-chip--active">Exercice</div>
+        <div class="filter-chip filter-chip--active">Production orale</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACORDEONES -->
+  <div class="kit-section">
+    <h2 class="kit-section-title">Acordeones</h2>
+    <div style="max-width: 400px;">
+      <div class="accordion-card">
+        <span class="accordion-label">Thème</span>
+        <span class="material-symbols-outlined" style="font-size: 20px; color: var(--color-azure-47);">expand_more</span>
+      </div>
+      <div class="accordion-card">
+        <span class="accordion-label">Points travaillés</span>
+        <span class="material-symbols-outlined" style="font-size: 20px; color: var(--color-azure-47);">expand_more</span>
+      </div>
+      <div class="accordion-card">
+        <span class="accordion-label">Activités</span>
+        <span class="material-symbols-outlined" style="font-size: 20px; color: var(--color-azure-47);">expand_more</span>
+      </div>
+      <div class="accordion-card">
+        <span class="accordion-label">Source</span>
+        <span class="material-symbols-outlined" style="font-size: 20px; color: var(--color-azure-47);">expand_more</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ICONOS -->
+  <div class="kit-section">
+    <h2 class="kit-section-title">Iconos (Material Symbols Outlined)</h2>
+    <div class="icons-grid">
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-blue-70); font-size: 40px;">play_circle</span>
+        </div>
+        <span class="icon-name">play_circle</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-blue-30); font-size: 40px;">headphones</span>
+        </div>
+        <span class="icon-name">headphones</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-red-42); font-size: 40px;">picture_as_pdf</span>
+        </div>
+        <span class="icon-name">picture_as_pdf</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-blue-57); font-size: 40px;">menu_book</span>
+        </div>
+        <span class="icon-name">menu_book</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-blue-57); font-size: 40px;">music_note</span>
+        </div>
+        <span class="icon-name">music_note</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-blue-57); font-size: 40px;">spellcheck</span>
+        </div>
+        <span class="icon-name">spellcheck</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-azure-47); font-size: 40px;">edit_note</span>
+        </div>
+        <span class="icon-name">edit_note</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-blue-57); font-size: 40px;">record_voice_over</span>
+        </div>
+        <span class="icon-name">record_voice_over</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-blue-57); font-size: 40px;">auto_stories</span>
+        </div>
+        <span class="icon-name">auto_stories</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-blue-70); font-size: 40px;">library_books</span>
+        </div>
+        <span class="icon-name">library_books</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-blue-57); font-size: 40px;">translate</span>
+        </div>
+        <span class="icon-name">translate</span>
+      </div>
+      <div class="icon-item">
+        <div class="icon-box">
+          <span class="material-symbols-outlined" style="color: var(--color-blue-57); font-size: 40px;">hearing</span>
+        </div>
+        <span class="icon-name">hearing</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESPACIAMIENTO -->
+  <div class="kit-section">
+    <h2 class="kit-section-title">Espaciamiento (Padding/Gap)</h2>
+    <div class="spacing-demo">
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 20px; height: 20px;"></div>
+        <span class="spacing-label">8px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 32px; height: 32px;"></div>
+        <span class="spacing-label">16px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 64px; height: 64px;"></div>
+        <span class="spacing-label">24px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 96px; height: 96px;"></div>
+        <span class="spacing-label">32px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 120px; height: 120px;"></div>
+        <span class="spacing-label">48px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box" style="width: 160px; height: 160px;"></div>
+        <span class="spacing-label">80px</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BORDES Y SHADOWS -->
+  <div class="kit-section">
+    <h2 class="kit-section-title">Bordes, Radios y Sombras</h2>
+    <div class="components-grid">
+      <div class="component-item">
+        <span class="component-label">Border radius: 8px</span>
+        <div style="background: var(--color-blue-57); width: 80px; height: 80px; border-radius: 8px;"></div>
+      </div>
+      <div class="component-item">
+        <span class="component-label">Border radius: 16px</span>
+        <div style="background: var(--color-blue-57); width: 80px; height: 80px; border-radius: 16px;"></div>
+      </div>
+      <div class="component-item">
+        <span class="component-label">Shadow: 1px 2px</span>
+        <div style="background: var(--color-white); width: 80px; height: 80px; border-radius: 8px; box-shadow: 0px 1px 2px rgba(0,0,0,0.05);"></div>
+      </div>
+      <div class="component-item">
+        <span class="component-label">Shadow: 4px 20px</span>
+        <div style="background: var(--color-white); width: 80px; height: 80px; border-radius: 8px; box-shadow: 0px 4px 20px rgba(51,65,85,0.03);"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="kit-footer">
+  <p>UI Kit — Le Point du FLE | Prototipo para testing de usabilidad | 2024</p>
+</div>
+
+</body>
+</html>
